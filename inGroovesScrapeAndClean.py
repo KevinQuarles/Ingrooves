@@ -1,6 +1,7 @@
 #! python3
 # inGroovesDownloads.py - downloads InGrooves files from the web
-# puts the files in their folder and unzipes the files
+# finds and formats the files
+# puts the files in their folder and unzips the files
 
 
 import shutil, zipfile, os, time, datetime, re, pandas as pd, openpyxl, calendar, xlrd
@@ -51,10 +52,10 @@ browser.maximize_window()
 time.sleep(2)
 emailElem = browser.find_element_by_id('email')
 time.sleep(2)
-emailElem.send_keys('DGCMGReportingEmail@concordmusicgroup.com')
+emailElem.send_keys('username')
 time.sleep(2)
 passwordElem = browser.find_element_by_id('password')
-passwordElem.send_keys('Concord2018!!')
+passwordElem.send_keys('password')
 time.sleep(2)
 signInButtonElem = browser.find_element_by_id('login').click()
 time.sleep(20)
@@ -109,8 +110,8 @@ print('Files Downloaded')
 # move files, create destination folder and unzip the files
 sourcePath = os.path.abspath('C:\\Users\\' + userName + '\Downloads')
 sourceFiles = os.listdir(sourcePath)
-os.makedirs(r'\\cmgfs\Shared\Accounting\Consignment Sales\Digital\INgrooves\\'+ str(year) +'\\OriginalFiles\\' + str(year) + '-' + '{:02d}'.format(month)) 
-destinationPath = os.path.abspath(r'\\cmgfs\Shared\Accounting\Consignment Sales\Digital\INgrooves\\'+ str(year) +'\\OriginalFiles\\' + str(year) + '-' + '{:02d}'.format(month))
+os.makedirs(r'\\INgrooves\\'+ str(year) +'\\OriginalFiles\\' + str(year) + '-' + '{:02d}'.format(month)) 
+destinationPath = os.path.abspath(r'\\INgrooves\\'+ str(year) +'\\OriginalFiles\\' + str(year) + '-' + '{:02d}'.format(month))
 
 for file in sourceFiles:
     if file.endswith('.zip'):
@@ -133,7 +134,7 @@ while answer != 'y' or if answer != 'Y':
 
 
          
-destinationPath = r'S:\Accounting\Consignment Sales\Digital\INgrooves\\'+ str(year) +'\\OriginalFiles\\' + str(year) + '-' + '{:02d}'.format(month)+ '\\Statements'
+destinationPath = r'S:\INgrooves\\'+ str(year) +'\\OriginalFiles\\' + str(year) + '-' + '{:02d}'.format(month)+ '\\Statements'
 destinationFiles = os.listdir(destinationPath)
 
 
@@ -151,7 +152,7 @@ print('Download And File Movement Complete')
 #########################################Formatting###########################################
 
 #Directory Variables
-destPath = r'S:\Accounting\Consignment Sales\Digital\INgrooves\\'+ str(year) +'\\Formatted-Completed'
+destPath = r'S:\INgrooves\\'+ str(year) +'\\Formatted-Completed'
 
 
 #Lists
@@ -253,10 +254,10 @@ print('---------------------------------------')
 ### logging in	
 ##emailElem = browser.find_element_by_id('email')
 ##time.sleep(2)
-##emailElem.send_keys('DGCMGReportingEmail@concordmusicgroup.com')
+##emailElem.send_keys('username')
 ##time.sleep(2)
 ##passwordElem = browser.find_element_by_id('password')
-##passwordElem.send_keys('Concord2018!!')
+##passwordElem.send_keys('password')
 ##time.sleep(2)
 ##signInButtonElem = browser.find_element_by_id('login').click()
 ##time.sleep(15)
